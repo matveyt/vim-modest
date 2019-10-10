@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2019 Jul 31
+" Last Change:  2019 Oct 09
 " URL:          https://github.com/matveyt/vim-modest
 
 hi clear
@@ -42,6 +42,23 @@ endfunction
 function! s:hilink(to_group, ...)
     for l:from_group in a:000
         execute 'hi! link' l:from_group a:to_group
+    endfor
+endfunction
+
+function! s:setansicolors(colors)
+    if !has('nvim')
+        let g:terminal_ansi_colors = []
+    endif
+
+    for l:idx in range(len(a:colors))
+        let l:name = a:colors[l:idx]
+        let l:value = get(s:palette, l:name)[2]
+        let l:color = empty(l:value) ? l:name : l:value
+        if !has('nvim')
+            call add(g:terminal_ansi_colors, l:color)
+        else
+            let g:terminal_color_{l:idx} = l:color
+        endif
     endfor
 endfunction
 
@@ -87,3 +104,7 @@ call s:hilink('Underlined', 'SpellBad', 'SpellCap', 'SpellLocal', 'SpellRare',
     \ 'VisualNOS')
 call s:hilink('Visual', 'Pmenu', 'PmenuSbar', 'TabLineFill', 'VertSplit')
 call s:hilink('WildMenu', 'DiffAdd', 'DiffText', 'IncSearch', 'PmenuSel', 'Todo')
+
+call s:setansicolors(['Eigengrau', 'Firebrick', 'Mantis', 'DarkChestnut', 'EgyptianBlue',
+    \ 'DarkOrchid', 'LightSeaGreen', 'AshGrey', 'GreyGreen', 'Red2', 'LawnGreen',
+    \ 'Goldenrod', 'CornflowerBlue', 'Orchid', 'Aqua', 'Beige'])
