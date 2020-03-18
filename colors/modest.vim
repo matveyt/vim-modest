@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2020 Mar 08
+" Last Change:  2020 Mar 17
 " URL:          https://github.com/matveyt/vim-modest
 
 let s:save_cpo = &cpo
@@ -28,7 +28,7 @@ let s:palette.DarkChestnut  = ['#986960',  95, 'Brown']
 function s:hilite(group, fg, bg, ...) abort
     if !a:0
         let l:term = ''
-    elseif stridx(a:1, '=') > 0
+    elseif stridx(a:1, '=') >= 0
         let l:term = a:1
     else
         let l:term = printf('term=%s cterm=%s gui=%s', a:1, a:1, a:1)
@@ -82,6 +82,7 @@ endif
 call s:hilite('Comment', 'GreyGreen', 'NONE')
 call s:hilite('PreProc', 'LightSeaGreen', 'NONE')
 call s:hilite('Error', 'fg', 'DarkChestnut')
+call s:hilite('ErrorMsg', 'bg', 'DarkChestnut')
 call s:hilite('StatusLine', 'NONE', 'NONE', 'bold,reverse')
 call s:hilite('StatusLineNC', 'NONE', 'NONE', 'reverse')
 call s:hilite('TabLineSel', 'fg', 'bg', 'bold')
@@ -95,8 +96,8 @@ call s:hilink('Statement', 'Constant', 'Directory', 'helpHyperTextEntry',
     \ 'helpHyperTextJump', 'helpOption', 'MoreMsg', 'Question', 'Special',
     \ 'texStatement', 'Title', 'Type')
 call s:hilink('CursorLine', 'ColorColumn', 'CursorColumn', 'VertSplit')
-call s:hilink('Error', 'DiffDelete', 'ErrorMsg', 'MatchParen', 'PmenuThumb',
-    \ 'WarningMsg')
+call s:hilink('Error', 'MatchParen', 'PmenuThumb')
+call s:hilink('ErrorMsg', 'DiffDelete', 'WarningMsg')
 call s:hilink('StatusLine', 'StatusLineTerm', 'ToolbarButton')
 call s:hilink('StatusLineNC', 'Cursor', 'DiffChange', 'helpNote', 'lCursor', 'Search',
     \ 'StatusLineTermNC')
