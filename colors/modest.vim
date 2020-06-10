@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2020 Mar 17
+" Last Change:  2020 Jun 10
 " URL:          https://github.com/matveyt/vim-modest
 
 let s:save_cpo = &cpo
@@ -89,8 +89,8 @@ call s:hilite('TabLineSel', 'fg', 'bg', 'bold')
 call s:hilite('Visual', 'bg', 'fg', 'NONE')
 
 call s:hilink('Normal', 'CursorLineNr', 'Function', 'Identifier', 'ModeMsg')
-call s:hilink('Comment', 'Conceal', 'FoldColumn', 'Folded', 'LineNr', 'NonText',
-    \ 'SignColumn', 'SpecialKey')
+call s:hilink('Comment', 'Conceal', 'EndOfBuffer', 'FoldColumn', 'Folded', 'Ignore',
+    \ 'LineNr', 'NonText', 'SignColumn', 'SpecialKey')
 call s:hilink('PreProc', 'cDefine', 'cInclude', 'cPreCondit', 'cPreProc')
 call s:hilink('Statement', 'Constant', 'Directory', 'helpHyperTextEntry',
     \ 'helpHyperTextJump', 'helpOption', 'MoreMsg', 'Question', 'Special',
