@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2020 Jun 10
+" Last Change:  2020 Jul 12
 " URL:          https://github.com/matveyt/vim-modest
 
 let s:save_cpo = &cpo
@@ -44,6 +44,7 @@ endfunction
 
 function s:hilink(to_group, ...) abort
     for l:from_group in a:000
+        execute 'hi clear' l:from_group
         execute 'hi! link' l:from_group a:to_group
     endfor
 endfunction
@@ -88,7 +89,7 @@ call s:hilite('StatusLineNC', 'NONE', 'NONE', 'reverse')
 call s:hilite('TabLineSel', 'fg', 'bg', 'bold')
 call s:hilite('Visual', 'bg', 'fg', 'NONE')
 
-call s:hilink('Normal', 'CursorLineNr', 'Function', 'Identifier', 'ModeMsg')
+call s:hilink('NONE', 'CursorLineNr', 'Function', 'Identifier', 'ModeMsg')
 call s:hilink('Comment', 'Conceal', 'EndOfBuffer', 'FoldColumn', 'Folded', 'Ignore',
     \ 'LineNr', 'NonText', 'SignColumn', 'SpecialKey')
 call s:hilink('PreProc', 'cDefine', 'cInclude', 'cPreCondit', 'cPreProc')
