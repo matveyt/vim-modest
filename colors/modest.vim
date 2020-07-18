@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2020 Jul 12
+" Last Change:  2020 Jul 18
 " URL:          https://github.com/matveyt/vim-modest
 
 let s:save_cpo = &cpo
@@ -64,7 +64,7 @@ function s:setansicolors(...) abort
     endfor
 endfunction
 
-if &bg ==# 'dark'
+if &bg is# 'dark'
     call s:hilite('Normal', 'AshGrey', 'Eigengrau')
     call s:hilite('Statement', 'Mantis', 'NONE', 'NONE')
     call s:hilite('CursorLine', 'NONE', 'Grey19', 'NONE')
@@ -89,7 +89,10 @@ call s:hilite('StatusLineNC', 'NONE', 'NONE', 'reverse')
 call s:hilite('TabLineSel', 'fg', 'bg', 'bold')
 call s:hilite('Visual', 'bg', 'fg', 'NONE')
 
-call s:hilink('NONE', 'CursorLineNr', 'Function', 'Identifier', 'ModeMsg')
+" Do NOT link any group to Normal but clear them instead!
+" This makes a difference for Neovim
+call s:hilink('NONE', 'CursorLineNr', 'Function', 'Identifier', 'ModeMsg', 'vimUserFunc')
+
 call s:hilink('Comment', 'Conceal', 'EndOfBuffer', 'FoldColumn', 'Folded', 'Ignore',
     \ 'LineNr', 'NonText', 'SignColumn', 'SpecialKey')
 call s:hilink('PreProc', 'cDefine', 'cInclude', 'cPreCondit', 'cPreProc')
