@@ -1,6 +1,7 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2020 Jul 18
+" Last Change:  2020 Jul 29
+" License:      VIM License
 " URL:          https://github.com/matveyt/vim-modest
 
 let s:save_cpo = &cpo
