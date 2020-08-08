@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2020 Jul 29
+" Last Change:  2020 Aug 08
 " License:      VIM License
 " URL:          https://github.com/matveyt/vim-modest
 
@@ -36,10 +36,15 @@ function s:hilite(group, fg, bg, ...) abort
     endif
     let l:fg = get(s:palette, a:fg, [a:fg, a:fg, a:fg])
     let l:bg = get(s:palette, a:bg, [a:bg, a:bg, a:bg])
+    if exists('g:colors_8bit')
+        let l:ict = g:colors_8bit ? 1 : 2
+    else
+        let l:ict = (&t_Co >= 256) ? 1 : 2
+    endif
+    let l:ctermfg = 'ctermfg='..l:fg[l:ict]
+    let l:ctermbg = 'ctermbg='..l:bg[l:ict]
     let l:guifg = 'guifg='..l:fg[0]
     let l:guibg = 'guibg='..l:bg[0]
-    let l:ctermfg = 'ctermfg='..l:fg[1 + (&t_Co<256)]
-    let l:ctermbg = 'ctermbg='..l:bg[1 + (&t_Co<256)]
     execute 'hi' a:group l:term l:ctermfg l:ctermbg l:guifg l:guibg
 endfunction
 
@@ -65,7 +70,7 @@ function s:setansicolors(...) abort
     endfor
 endfunction
 
-if &bg is# 'dark'
+if &background is# 'dark'
     call s:hilite('Normal', 'AshGrey', 'Eigengrau')
     call s:hilite('Statement', 'Mantis', 'NONE', 'NONE')
     call s:hilite('CursorLine', 'NONE', 'Grey19', 'NONE')
