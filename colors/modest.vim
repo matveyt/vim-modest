@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2020 Aug 09
+" Last Change:  2021 Jan 21
 " License:      VIM License
 " URL:          https://github.com/matveyt/vim-modest
 
@@ -27,25 +27,13 @@ let s:palette.Mantis        = ['#74c365',  77, 'DarkGreen']
 let s:palette.DarkChestnut  = ['#986960',  95, 'DarkYellow']
 
 function s:hilite(group, fg, bg, ...) abort
-    if !a:0
-        let l:term = ''
-    elseif stridx(a:1, '=') >= 0
-        let l:term = a:1
-    else
-        let l:term = printf('term=%s cterm=%s gui=%s', a:1, a:1, a:1)
-    endif
-    let l:fg = get(s:palette, a:fg, [a:fg, a:fg, a:fg])
-    let l:bg = get(s:palette, a:bg, [a:bg, a:bg, a:bg])
-    if exists('g:colors_8bit')
-        let l:ict = g:colors_8bit ? 1 : 2
-    else
-        let l:ict = (&t_Co >= 256) ? 1 : 2
-    endif
-    let l:ctermfg = 'ctermfg='..l:fg[l:ict]
-    let l:ctermbg = 'ctermbg='..l:bg[l:ict]
-    let l:guifg = 'guifg='..l:fg[0]
-    let l:guibg = 'guibg='..l:bg[0]
-    execute 'hi' a:group l:term l:ctermfg l:ctermbg l:guifg l:guibg
+    let l:term = !a:0 ? '' : stridx(a:1, '=') >= 0 ? a:1 :
+        \ printf('term=%s cterm=%s gui=%s', a:1, a:1, a:1)
+    let l:fg = get(s:palette, a:fg, repeat([a:fg], 3))
+    let l:bg = get(s:palette, a:bg, repeat([a:bg], 3))
+    let l:ix = get(g:, 'colors_8bit', &t_Co >= 256) ? 1 : 2
+    execute printf('highlight %s %s ctermfg=%s ctermbg=%s guifg=%s guibg=%s',
+        \ a:group, l:term, l:fg[l:ix], l:bg[l:ix], l:fg[0], l:bg[0])
 endfunction
 
 function s:hilink(to_group, ...) abort
@@ -95,7 +83,7 @@ call s:hilite('StatusLineNC', 'NONE', 'NONE', 'reverse')
 call s:hilite('TabLineSel', 'fg', 'bg', 'bold')
 call s:hilite('Visual', 'bg', 'fg', 'NONE')
 
-" Do NOT link any group to Normal but clear them instead!
+" Do not link any group to Normal but clear them instead!
 " This makes a difference for Neovim
 call s:hilink('NONE', 'CursorLineNr', 'Function', 'Identifier', 'ModeMsg', 'vimUserFunc')
 
