@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2021 Jan 21
+" Last Change:  2021 May 03
 " License:      VIM License
 " URL:          https://github.com/matveyt/vim-modest
 
@@ -29,10 +29,10 @@ let s:palette.DarkChestnut  = ['#986960',  95, 'DarkYellow']
 function s:hilite(group, fg, bg, ...) abort
     let l:term = !a:0 ? '' : stridx(a:1, '=') >= 0 ? a:1 :
         \ printf('term=%s cterm=%s gui=%s', a:1, a:1, a:1)
-    let l:fg = get(s:palette, a:fg, repeat([a:fg], 3))
-    let l:bg = get(s:palette, a:bg, repeat([a:bg], 3))
+    let l:fg = get(s:palette, a:fg, [a:fg, a:fg, a:fg])
+    let l:bg = get(s:palette, a:bg, [a:bg, a:bg, a:bg])
     let l:ix = get(g:, 'colors_8bit', &t_Co >= 256) ? 1 : 2
-    execute printf('highlight %s %s ctermfg=%s ctermbg=%s guifg=%s guibg=%s',
+    execute printf('hi %s %s ctermfg=%s ctermbg=%s guifg=%s guibg=%s',
         \ a:group, l:term, l:fg[l:ix], l:bg[l:ix], l:fg[0], l:bg[0])
 endfunction
 
@@ -47,13 +47,13 @@ function s:setansicolors(...) abort
     if !has('nvim')
         let g:terminal_ansi_colors = []
     endif
-    for l:idx in range(a:0)
-        let l:name = a:000[l:idx]
+    for l:ix in range(a:0)
+        let l:name = a:000[l:ix]
         let l:color = has_key(s:palette, l:name) ? s:palette[l:name][0] : l:name
         if !has('nvim')
             call add(g:terminal_ansi_colors, l:color)
         else
-            let g:terminal_color_{l:idx} = l:color
+            let g:terminal_color_{l:ix} = l:color
         endif
     endfor
 endfunction
@@ -83,28 +83,22 @@ call s:hilite('StatusLineNC', 'NONE', 'NONE', 'reverse')
 call s:hilite('TabLineSel', 'fg', 'bg', 'bold')
 call s:hilite('Visual', 'bg', 'fg', 'NONE')
 
-" Do not link any group to Normal but clear them instead!
-" This makes a difference for Neovim
 call s:hilink('NONE', 'CursorLineNr', 'Function', 'Identifier', 'ModeMsg', 'vimUserFunc')
-
 call s:hilink('Comment', 'Conceal', 'EndOfBuffer', 'FoldColumn', 'Folded', 'Ignore',
     \ 'LineNr', 'NonText', 'SignColumn', 'SpecialKey')
-call s:hilink('PreProc', 'cDefine', 'cInclude', 'cPreCondit', 'cPreProc')
-call s:hilink('Statement', 'Constant', 'Directory', 'helpHyperTextEntry',
-    \ 'helpHyperTextJump', 'helpOption', 'MoreMsg', 'Question', 'Special',
-    \ 'texStatement', 'Title', 'Type')
+call s:hilink('Statement', 'Constant', 'Directory', 'helpHyperTextJump', 'MoreMsg',
+    \ 'Question', 'Special', 'Title', 'Type')
 call s:hilink('CursorLine', 'ColorColumn', 'CursorColumn', 'VertSplit')
 call s:hilink('Error', 'MatchParen', 'PmenuThumb')
 call s:hilink('ErrorMsg', 'DiffDelete', 'WarningMsg')
 call s:hilink('StatusLine', 'StatusLineTerm', 'ToolbarButton')
-call s:hilink('StatusLineNC', 'Cursor', 'DiffChange', 'helpNote', 'lCursor', 'Search',
-    \ 'StatusLineTermNC')
+call s:hilink('StatusLineNC', 'Cursor', 'DiffChange', 'lCursor', 'StatusLineTermNC',
+    \ 'Todo')
 call s:hilink('TabLine', 'ToolbarLine')
-call s:hilink('Underlined', 'SpellBad', 'SpellCap', 'SpellLocal', 'SpellRare',
-    \ 'VisualNOS')
+call s:hilink('Underlined', 'QuickFixLine', 'Search', 'SpellBad', 'SpellCap',
+    \ 'SpellLocal', 'SpellRare', 'VisualNOS')
 call s:hilink('Visual', 'Pmenu', 'PmenuSbar', 'TabLineFill')
-call s:hilink('WildMenu', 'DiffAdd', 'DiffText', 'IncSearch', 'PmenuSel',
-    \ 'QuickFixLine', 'Todo')
+call s:hilink('WildMenu', 'DiffAdd', 'DiffText', 'IncSearch', 'PmenuSel')
 
 call s:setansicolors('Eigengrau', 'Firebrick', 'Mantis', 'DarkChestnut', 'EgyptianBlue',
     \ 'DarkOrchid', 'LightSeaGreen', 'AshGrey', 'GreyGreen', 'Red2', 'LawnGreen',
