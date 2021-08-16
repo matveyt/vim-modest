@@ -1,13 +1,23 @@
 ### Vim modest colorscheme
 
-A Vim color scheme made to look well in all terminals.
+A Vim color scheme looking good in all terminals.
 
-Supports 8/16/256/TrueColor on both dark and light backgrounds. No setup required
-whatsoever.
+Support for 8/16/256/TrueColor on both dark and light backgrounds. No setup required.
 
 ### Installation
 
-Use any plugin manager or simply copy _modest.vim_ to your _colors/_ subdirectory.
+Using [minpac](https://github.com/k-takata/minpac):
+
+```vim
+call minpac#init()
+call minpac#add('matveyt/vim-modest', {'type': 'opt'})
+```
+
+Or use any other plugin manager or simply copy _modest.vim_ to your _colors/_
+subdirectory.
+
+Note: prefer installing your colorschemes under `opt` to keep `&runtimepath` as short as
+possible.
 
 ### Troubleshooting
 
