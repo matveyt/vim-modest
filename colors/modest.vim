@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2021 May 03
+" Last Change:  2022 Feb 15
 " License:      VIM License
 " URL:          https://github.com/matveyt/vim-modest
 
@@ -8,10 +8,6 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 hi clear
-if exists('g:syntax_on')
-    syntax reset
-endif
-
 let g:colors_name = 'modest'
 
 let s:palette = {}
@@ -84,6 +80,7 @@ call s:hilite('TabLineSel', 'fg', 'bg', 'bold')
 call s:hilite('Visual', 'bg', 'fg', 'NONE')
 
 call s:hilink('NONE', 'CursorLineNr', 'Function', 'Identifier', 'ModeMsg', 'vimUserFunc')
+call s:hilink('Normal', 'Terminal')
 call s:hilink('Comment', 'Conceal', 'EndOfBuffer', 'FoldColumn', 'Folded', 'Ignore',
     \ 'LineNr', 'NonText', 'SignColumn', 'SpecialKey')
 call s:hilink('Statement', 'Constant', 'Directory', 'helpHyperTextJump', 'MoreMsg',
