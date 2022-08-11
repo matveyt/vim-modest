@@ -1,33 +1,31 @@
 ### Vim modest colorscheme
 
-A Vim color scheme looking good in all terminals.
+A color scheme with both dark and light background.
 
-Support for 8/16/256/TrueColor on both dark and light backgrounds. No setup required.
+Painless support for 8/16/256/TrueColor.
 
 ### Installation
 
-Using [minpac](https://github.com/k-takata/minpac):
+By [minpac](https://github.com/k-takata/minpac):
 
 ```vim
 call minpac#init()
 call minpac#add('matveyt/vim-modest', {'type': 'opt'})
 ```
 
-Or use any other plugin manager or simply copy _modest.vim_ to your _colors/_
-subdirectory.
-
-Note: prefer installing your colorschemes under `opt` to keep `&runtimepath` as short as
+Note: prefer installing colorschemes under `opt` to keep `&runtimepath` as short as
 possible.
+
+Alternatively, use any other plugin manager or just copy _modest.vim_ to your _colors/_
+subdirectory.
 
 ### Troubleshooting
 
-On some rare occasions your Vim/Neovim may fail to detect *&t_Co* properly. For example,
-Neovim reports 256 colors running on */dev/tty* with 16 colors only. You can try the
-following to fix this:
+If you wish you can also force only 16 colors in a terminal like this:
 
     " disable TrueColor
     set notermguicolors
-    " disable xterm 256 colors
+    " disable xterm-256 colors
     let g:colors_8bit = 0
     " reload color scheme
     colorscheme modest
