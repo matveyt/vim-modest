@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2022 Feb 15
+" Last Change:  2024 Jun 21
 " License:      VIM License
 " URL:          https://github.com/matveyt/vim-modest
 
@@ -81,8 +81,9 @@ call s:hilite('Visual', 'bg', 'fg', 'NONE')
 
 call s:hilink('NONE', 'CursorLineNr', 'Function', 'Identifier', 'ModeMsg', 'vimUserFunc')
 call s:hilink('Normal', 'Terminal')
-call s:hilink('Comment', 'Conceal', 'EndOfBuffer', 'FoldColumn', 'Folded', 'Ignore',
-    \ 'LineNr', 'NonText', 'SignColumn', 'SpecialKey')
+call s:hilink('Comment', 'Conceal', 'CursorLineFold', 'CursorLineSign', 'EndOfBuffer',
+    \ 'FoldColumn', 'Folded', 'Ignore', 'LineNr', 'LineNrAbove', 'LineNrBelow',
+    \ 'NonText', 'SignColumn', 'SpecialKey')
 call s:hilink('Statement', 'Constant', 'Directory', 'helpHyperTextJump', 'MoreMsg',
     \ 'Question', 'Special', 'Title', 'Type')
 call s:hilink('CursorLine', 'ColorColumn', 'CursorColumn', 'VertSplit')
@@ -92,10 +93,22 @@ call s:hilink('StatusLine', 'StatusLineTerm', 'ToolbarButton')
 call s:hilink('StatusLineNC', 'Cursor', 'DiffChange', 'lCursor', 'StatusLineTermNC',
     \ 'Todo')
 call s:hilink('TabLine', 'ToolbarLine')
-call s:hilink('Underlined', 'QuickFixLine', 'Search', 'SpellBad', 'SpellCap',
-    \ 'SpellLocal', 'SpellRare', 'VisualNOS')
-call s:hilink('Visual', 'Pmenu', 'PmenuSbar', 'TabLineFill')
-call s:hilink('WildMenu', 'DiffAdd', 'DiffText', 'IncSearch', 'PmenuSel')
+call s:hilink('Underlined', 'CurSearch', 'QuickFixLine', 'Search', 'SpellBad',
+    \ 'SpellCap', 'SpellLocal', 'SpellRare', 'VisualNOS')
+call s:hilink('Visual', 'Pmenu', 'PmenuExtra', 'PmenuKind', 'PmenuSbar', 'TabLineFill')
+call s:hilink('WildMenu', 'DiffAdd', 'DiffText', 'IncSearch', 'PmenuExtraSel',
+    \ 'PmenuKindSel', 'PmenuSel')
+
+if has('nvim')
+    call s:hilink('NONE', 'MsgArea', 'NormalNC', 'TermCursorNC', 'VisualNC')
+    call s:hilink('Comment', 'Whitespace')
+    call s:hilink('CursorLine', 'FloatBorder', 'FloatTitle', 'WinSeparator')
+    call s:hilink('ErrorMsg', 'MsgSeparator')
+    call s:hilink('StatusLine', 'WinBar')
+    call s:hilink('StatusLineNC', 'TermCursor', 'WinBarNC')
+    call s:hilink('Underlined', 'Substitute')
+    call s:hilink('Visual', 'NormalFloat')
+endif
 
 call s:setansicolors('Eigengrau', 'Firebrick', 'Mantis', 'DarkChestnut', 'EgyptianBlue',
     \ 'DarkOrchid', 'LightSeaGreen', 'AshGrey', 'GreyGreen', 'Red2', 'LawnGreen',
