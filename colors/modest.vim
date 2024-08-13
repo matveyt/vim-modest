@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2024 Jun 21
+" Last Change:  2024 Aug 13
 " License:      VIM License
 " URL:          https://github.com/matveyt/vim-modest
 
@@ -85,7 +85,7 @@ call s:hilink('Comment', 'Conceal', 'CursorLineFold', 'CursorLineSign', 'EndOfBu
     \ 'FoldColumn', 'Folded', 'Ignore', 'LineNr', 'LineNrAbove', 'LineNrBelow',
     \ 'NonText', 'SignColumn', 'SpecialKey')
 call s:hilink('Statement', 'Constant', 'Directory', 'helpHyperTextJump', 'MoreMsg',
-    \ 'Question', 'Special', 'Title', 'Type')
+    \ 'Question', 'Special', 'String', 'Title', 'Type')
 call s:hilink('CursorLine', 'ColorColumn', 'CursorColumn', 'VertSplit')
 call s:hilink('Error', 'MatchParen', 'PmenuThumb')
 call s:hilink('ErrorMsg', 'DiffDelete', 'WarningMsg')
