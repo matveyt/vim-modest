@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2024 Aug 13
+" Last Change:  2024 Aug 28
 " License:      VIM License
 " URL:          https://github.com/matveyt/vim-modest
 
@@ -59,14 +59,14 @@ if &background is# 'dark'
     call s:hilite('Statement', 'Mantis', 'NONE', 'NONE')
     call s:hilite('CursorLine', 'NONE', 'Grey19', 'NONE')
     call s:hilite('TabLine', 'NONE', 'GreyGreen', 'underline')
-    call s:hilite('Underlined', 'fg', 'DarkChestnut', 'underline')
+    call s:hilite('Underlined', 'NONE', 'Grey19', 'underline')
     call s:hilite('WildMenu', 'bg', 'Mantis', 'gui=bold')
 else
     call s:hilite('Normal', 'EgyptianBlue', 'Beige')
     call s:hilite('Statement', 'DarkChestnut', 'NONE', 'NONE')
     call s:hilite('CursorLine', 'NONE', 'Grey85', 'NONE')
     call s:hilite('TabLine', 'NONE', 'LightSeaGreen', 'NONE')
-    call s:hilite('Underlined', 'fg', 'LightSeaGreen', 'underline')
+    call s:hilite('Underlined', 'NONE', 'Grey85', 'underline')
     call s:hilite('WildMenu', 'bg', 'LightSeaGreen')
 endif
 
