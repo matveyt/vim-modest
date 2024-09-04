@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:   matveyt
-" Last Change:  2024 Aug 28
+" Last Change:  2024 Sep 04
 " License:      VIM License
 " URL:          https://github.com/matveyt/vim-modest
 
@@ -84,8 +84,8 @@ call s:hilink('Normal', 'Terminal')
 call s:hilink('Comment', 'Conceal', 'CursorLineFold', 'CursorLineSign', 'EndOfBuffer',
     \ 'FoldColumn', 'Folded', 'Ignore', 'LineNr', 'LineNrAbove', 'LineNrBelow',
     \ 'NonText', 'SignColumn', 'SpecialKey')
-call s:hilink('Statement', 'Constant', 'Directory', 'helpHyperTextJump', 'MoreMsg',
-    \ 'Question', 'Special', 'String', 'Title', 'Type')
+call s:hilink('Statement', 'Constant', 'Directory', 'MoreMsg', 'Question', 'Special',
+    \ 'String', 'Title', 'Type')
 call s:hilink('CursorLine', 'ColorColumn', 'CursorColumn', 'VertSplit')
 call s:hilink('Error', 'MatchParen', 'PmenuThumb')
 call s:hilink('ErrorMsg', 'DiffDelete', 'WarningMsg')
@@ -108,6 +108,8 @@ if has('nvim')
     call s:hilink('StatusLineNC', 'TermCursor', 'WinBarNC')
     call s:hilink('Underlined', 'Substitute')
     call s:hilink('Visual', 'NormalFloat')
+else
+    call s:hilink('Underlined', 'helpHyperTextJump')
 endif
 
 call s:setansicolors('Eigengrau', 'Firebrick', 'Mantis', 'DarkChestnut', 'EgyptianBlue',
